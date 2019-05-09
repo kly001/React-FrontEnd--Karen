@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       
       <div className="title">
-      <h1>Foodie Fun Project</h1>
+      <h1>You Ready To Eat ?</h1>
       </div>
       
       <div className="input-sections">
