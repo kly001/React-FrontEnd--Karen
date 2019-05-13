@@ -22,19 +22,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-.signup-section, .login-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-  
-}
-.input-sections {
-  display: flex;
-  justify-content: center;
-}
+
 
