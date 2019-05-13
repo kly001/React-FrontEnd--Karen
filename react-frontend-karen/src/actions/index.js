@@ -1,49 +1,17 @@
-/* 
-  Action Types Go Here!
-  Be sure to export each action type so you can pull it into your reducer
-*/
-import axios from "axios";
-/*
-  For this project you'll need at least 2 action creators for the main portion,
-   and 2 more for the stretch problem.
-   Be sure to include action types for each type of action creator. Also, be sure to mind
-     the "pending" states like, fetching, creating, updating and deleting.
-   C - addSmurf
-   R - getSmurfs
-   U - updateSmurf
-   D - deleteSmurf
-*/
+import axios from 'axios';
 
-export const FETCHING = "FETCHING";
-export const SUCCESS = "SUCCESS";
-export const FAILURE = "FAILURE";
-// export const UPDATE= "UPDATE";
-// export const DELETE = "DELETE"
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 
-
-export const login = () => dispatch => {
-dispatch( {type: FETCHING})
-axios
-.post("https://backend-foodie-fun.herokuapp.com/api/auth/login")
-  .then(response => dispatch(
-      { type: SUCCESS,  
-        payload:response.data}))
-  .catch(error => dispatch(
-      { type: FAILURE, 
-      payload: error }));
+export const login = creds => dispatch => {
+  dispatch({ type: LOGIN_START });
+  return axios
+  .post(" https://backend-foodie-fun.herokuapp.com/api/auth/login", creds)
+  .then(res => {
+    localStorage.setItem('token', res.data.payload);
+    dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
+  })
+  .catch(err => console.log(err));
 };
-
-export const signup = (newMember) => dispatch => {
-  dispatch( {type:FETCHING})
-axios
-.post("https://backend-foodie-fun.herokuapp.com/api/auth/register", newMember)
-  .then(response => dispatch(
-      { type: SUCCESS,  
-         payload:response.data}))
-  .catch(error => dispatch(
-      { type: FAILURE, 
-      payload: error }));
-};
-
-export const 
